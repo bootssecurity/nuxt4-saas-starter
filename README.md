@@ -74,10 +74,19 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 
 ### Installation
 
+**Option 1: CLI (Recommended)**
+Scaffold a new project in seconds:
+
+```bash
+npx create-nuxt4-saas-starter my-saas-app
+```
+
+**Option 2: Manual Clone**
+
 1.  **Clone the repository:**
 
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/bootssecurity/nuxt4-saas-starter.git
     cd nuxt-app
     ```
 
