@@ -5,6 +5,13 @@
 [![NuxtHub](https://img.shields.io/badge/NuxtHub-Enabled-F38020?style=flat&logo=cloudflare)](https://hub.nuxt.com)
 [![Drizzle](https://img.shields.io/badge/Drizzle-ORM-C5F74F?style=flat&logo=drizzle)](https://orm.drizzle.team)
 
+<br>
+
+<p align="center">
+  <img src="public/screenshots/landing.png" width="45%" alt="Nuxt SaaS Starter Landing">
+  <img src="public/screenshots/login.png" width="45%" alt="Nuxt SaaS Starter Login">
+</p>
+
 A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub**, and **Nuxt UI v4**. Designed for speed, scalability, and ease of deployment to Cloudflare.
 
 ## ✨ Features
@@ -17,6 +24,25 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 - **Email**: Transactional email support configured for **ZeptoMail**.
 - **Testing**: Unit and integration testing setup with **Vitest**.
 - **Type Safety**: End-to-end TypeScript support.
+
+## ⚡ Detailed Features
+
+### 🔐 Authentication & Security
+- **Magic Link Auth**: Passwordless login via email magic links.
+- **Rate Limiting**: Built-in rate limiting for sensitive endpoints (Login, Signup, Data Export).
+- **Audit Logging**: Comprehensive audit trails for security-critical actions (Signups, Profile Updates).
+- **Role-Based Access**: Dedicated signup flows for **Business** and **Employee** roles.
+- **Session Management**: Secure session handling with `nuxt-auth-utils`.
+
+### 🛡 User Privacy & GDPR
+- **Data Export**: Full "Right to Access" (DSAR) support with JSON data export.
+- **Account Deletion**: "Right to Erasure" with soft-delete and scheduled hard-delete.
+- **Profile Management**: Secure profile updates with strict input sanitization.
+
+### 🏗 Backend & Infrastructure
+- **D1 Database**: Serverless SQLite database with Drizzle ORM.
+- **NuxtHub Integration**: Native support for Cloudflare KV, Blog Storage, and Cache.
+- **Input Validation**: Robust validation using Zod and custom sanitizers.
 
 ## 🛠 Tech Stack
 
