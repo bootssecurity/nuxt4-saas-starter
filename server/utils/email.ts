@@ -2,6 +2,7 @@
  * Zeptomail Email Service
  * Uses HTTP API (Cloudflare Workers compatible)
  */
+import { htmlToText } from 'html-to-text'
 
 interface EmailOptions {
     to: string | string[]
@@ -45,7 +46,7 @@ export async function sendEmail(options: EmailOptions): Promise<ZeptomailRespons
         })),
         subject: options.subject,
         htmlbody: options.html,
-        textbody: options.text || options.html?.replace(/<[^>]*>/g, ''),
+        textbody: options.text || (options.html ? htmlToText(options.html) : undefined),
         reply_to: options.replyTo ? [{ address: options.replyTo }] : undefined
     }
 
