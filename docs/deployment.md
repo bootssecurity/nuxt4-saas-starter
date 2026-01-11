@@ -84,6 +84,15 @@ To allow GitHub to deploy to your Cloudflare account, you need to add credential
     -   **Name**: `CLOUDFLARE_API_TOKEN`
         -   **Value**: (Paste your API Token)
 
+### Step 2.3: Add Build-Time Secrets (Required)
+To ensure the automated deployment works correctly, add the following secrets to GitHub as well. These are injected during the build process to replicate a local environment build.
+
+1.  `ZEPTOMAIL_API_KEY`
+2.  `NUXT_SESSION_PASSWORD`
+3.  `MAIL_FROM_ADDRESS`
+4.  `MAIL_FROM_NAME`
+5.  `NUXT_PUBLIC_APP_URL` (Your project's production URL)
+
 ---
 
 ## 3. Deployment

@@ -30,6 +30,11 @@ jobs:
         run: bun run build
         env:
           NITRO_PRESET: cloudflare_pages
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          NUXT_SESSION_PASSWORD: ${{ secrets.NUXT_SESSION_PASSWORD }}
+          MAIL_FROM_ADDRESS: ${{ secrets.MAIL_FROM_ADDRESS }}
+          MAIL_FROM_NAME: ${{ secrets.MAIL_FROM_NAME }}
+          NUXT_PUBLIC_APP_URL: ${{ secrets.NUXT_PUBLIC_APP_URL }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
