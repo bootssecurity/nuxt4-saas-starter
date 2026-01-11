@@ -16,7 +16,12 @@ export function sanitizeEmail(email: string): string {
     let sanitized = email.trim().toLowerCase()
 
     // Remove any HTML tags
-    sanitized = sanitized.replace(/<[^>]*>/g, '')
+    // Remove any HTML tags (iterative to handle nested tags)
+    let oldEmail
+    do {
+        oldEmail = sanitized
+        sanitized = sanitized.replace(/<[^>]*>/g, '')
+    } while (sanitized !== oldEmail)
 
     // Remove control characters
     sanitized = sanitized.replace(/[\x00-\x1F\x7F]/g, '')
@@ -44,7 +49,12 @@ export function sanitizeString(input: string, maxLength: number = 255): string {
     let sanitized = input
 
     // Remove HTML tags
-    sanitized = sanitized.replace(/<[^>]*>/g, '')
+    // Remove HTML tags (iterative to handle nested tags)
+    let oldInput
+    do {
+        oldInput = sanitized
+        sanitized = sanitized.replace(/<[^>]*>/g, '')
+    } while (sanitized !== oldInput)
 
     // Remove control characters (except newlines and tabs)
     sanitized = sanitized.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
