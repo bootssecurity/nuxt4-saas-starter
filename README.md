@@ -159,6 +159,10 @@ bun run test:coverage
 -   `public/`: Static assets.
 -   `nuxt.config.ts`: Nuxt configuration.
 
+## 📚 Documentation
+
+For detailed API documentation, please check the [Wiki / API Docs](./docs/api/README.md).
+
 ## 📄 License
 
 MIT License.
