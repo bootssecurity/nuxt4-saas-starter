@@ -2,7 +2,8 @@
 import type { TableColumn } from '@nuxt/ui'
 
 definePageMeta({
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Users'
 })
 
 // Fetch users with proper loading and error states
@@ -200,16 +201,13 @@ const getItems = (row: any) => [
 </script>
 
 <template>
-  <UDashboardPanel>
-    <template #header>
-      <UDashboardNavbar title="Users">
-        <template #right>
-           <!-- Placeholder for Add User -->
-           <!-- Add User Button -->
-           <UButton label="Add User" icon="i-heroicons-plus-20-solid" @click="isAddUserOpen = true" />
-        </template>
-      </UDashboardNavbar>
-    </template>
+  <div class="flex flex-col h-full gap-4">
+    <!-- Add User Button moved to page content or use a Portal if needed. -->
+    <!-- Since I removed the navbar, I should put the "Add User" button somewhere visible. -->
+    <!-- I'll put it at the top of the page content. -->
+    <div class="flex justify-end">
+       <UButton label="Add User" icon="i-heroicons-plus-20-solid" @click="isAddUserOpen = true" />
+    </div>
 
     <!-- Error State -->
     <UAlert
@@ -355,5 +353,5 @@ const getItems = (row: any) => [
         <UButton label="Delete" color="error" @click="deleteUser" />
       </template>
     </UModal>
-  </UDashboardPanel>
+  </div>
 </template>

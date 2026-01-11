@@ -43,7 +43,17 @@
       </template>
     </UDashboardSidebar>
 
-    <slot />
+    <UDashboardPanel>
+      <UDashboardNavbar :title="title">
+        <template #right>
+           <ChatWidget />
+        </template>
+      </UDashboardNavbar>
+
+      <div class="flex-1 overflow-y-auto p-4">
+        <slot />
+      </div>
+    </UDashboardPanel>
   </UDashboardGroup>
 </template>
 
@@ -89,5 +99,25 @@ async function logout() {
   clear()
   navigateTo('/auth/login')
 }
+
+const route = useRoute()
+const title = computed(() => {
+  return (route.meta.title as string) || 'Dashboard'
+})
+
+// Unlock audio on first interaction
+import { useChatStore } from '~/stores/chat'
+const chatStore = useChatStore()
+
+function unlockAudio() {
+  chatStore.initAudio()
+  window.removeEventListener('click', unlockAudio)
+  window.removeEventListener('keydown', unlockAudio)
+}
+
+onMounted(() => {
+  window.addEventListener('click', unlockAudio)
+  window.addEventListener('keydown', unlockAudio)
+})
 </script>
 

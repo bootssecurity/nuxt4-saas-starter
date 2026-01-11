@@ -13,7 +13,9 @@ export default defineNuxtConfig({
     '@nuxt/hints',
     '@nuxt/eslint',
     '@nuxt/a11y',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
+    'nuxt-security',
+    '@pinia/nuxt'
   ],
 
   css: ['~/assets/css/main.css'],
@@ -53,6 +55,9 @@ export default defineNuxtConfig({
 
   // Cloudflare Pages deployment preset (applied during build)
   nitro: {
-    preset: process.env.NITRO_PRESET || 'cloudflare_pages'
+    preset: process.env.NITRO_PRESET || 'cloudflare_pages',
+    experimental: {
+      websocket: true
+    }
   }
 })

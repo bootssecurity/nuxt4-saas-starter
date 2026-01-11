@@ -1,12 +1,5 @@
 <template>
-  <UDashboardPanel>
-    <UDashboardNavbar title="Activity Log">
-      <template #leading>
-        <UButton to="/dashboard/settings" variant="ghost" icon="i-heroicons-arrow-left" size="sm" />
-      </template>
-    </UDashboardNavbar>
-
-    <div class="p-6 space-y-6">
+  <div class="p-6 space-y-6">
       <!-- Info -->
       <UAlert
         color="info"
@@ -121,14 +114,14 @@
           @update:model-value="fetchLogs"
         />
       </div>
-    </div>
-  </UDashboardPanel>
+  </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Activity Log'
 })
 
 const filters = reactive({

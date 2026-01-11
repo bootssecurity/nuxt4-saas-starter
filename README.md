@@ -21,6 +21,7 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 - **Authentication**: Secure, session-based authentication using [Nuxt Auth Utils](https://github.com/atinux/nuxt-auth-utils).
 - **UI Framework**: Beautiful, accessible components with [Nuxt UI v4](https://ui.nuxt.com) (Tailwind CSS under the hood).
 - **Serverless Ready**: Pre-configured with [NuxtHub](https://hub.nuxt.com) for Cloudflare Workers (Blob Storage, KV, Database, Cache).
+- **Real-time Chat**: End-to-end encrypted messaging with WebSocket support.
 - **Email**: Transactional email support configured for **ZeptoMail**.
 - **Testing**: Unit and integration testing setup with **Vitest**.
 - **Type Safety**: End-to-end TypeScript support.
@@ -32,16 +33,26 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 - **Rate Limiting**: Built-in rate limiting for sensitive endpoints (Login, Signup, Data Export).
 - **Audit Logging**: Comprehensive audit trails for security-critical actions (Signups, Profile Updates).
 - **Role-Based Access**: Dedicated signup flows for **Business** and **Employee** roles.
-- **Session Management**: Secure session handling with `nuxt-auth-utils`.
+- **Session Management**: Secure session handling with device tracking and revocation.
+
+### 💬 Real-time Messaging
+- **End-to-End Encryption**: All messages are encrypted client-side using RSA-OAEP key exchange and AES-GCM encryption.
+- **WebSocket Communication**: Real-time message delivery via WebSocket connections.
+- **Read Receipts**: Instant read status updates across all participants.
+- **Online Presence**: Real-time online/offline status indicators.
+- **Unread Counts**: Per-conversation unread message counts.
+- **Notification Sounds**: Audio alerts for new messages.
 
 ### 🛡 User Privacy & GDPR
 - **Data Export**: Full "Right to Access" (DSAR) support with JSON data export.
 - **Account Deletion**: "Right to Erasure" with soft-delete and scheduled hard-delete.
+- **Consent Management**: Granular consent preferences for marketing and analytics.
+- **Activity Logs**: User-accessible security event history.
 - **Profile Management**: Secure profile updates with strict input sanitization.
 
 ### 🏗 Backend & Infrastructure
 - **D1 Database**: Serverless SQLite database with Drizzle ORM.
-- **NuxtHub Integration**: Native support for Cloudflare KV, Blog Storage, and Cache.
+- **NuxtHub Integration**: Native support for Cloudflare KV, Blob Storage, and Cache.
 - **Input Validation**: Robust validation using Zod and custom sanitizers.
 
 ## 🛠 Tech Stack
@@ -52,6 +63,7 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 - **Styling**: Tailwind CSS (via Nuxt UI)
 - **Deployment**: Cloudflare Pages / Workers
 - **Package Manager**: Bun (recommended) or npm/pnpm
+
 
 ## 🚀 Getting Started
 

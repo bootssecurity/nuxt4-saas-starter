@@ -1,13 +1,6 @@
 <template>
-  <UDashboardPanel>
-    <UDashboardNavbar title="Profile Settings">
-      <template #leading>
-        <UButton to="/dashboard/settings" variant="ghost" icon="i-heroicons-arrow-left" size="sm" />
-      </template>
-    </UDashboardNavbar>
-
-    <div class="p-6 space-y-8">
-      <!-- Profile Picture -->
+  <div class="p-6 space-y-8">
+    <!-- Profile Picture -->
       <UPageCard 
         title="Profile Picture" 
         description="Your avatar shown across the platform"
@@ -112,14 +105,14 @@
           </UButton>
         </div>
       </UPageCard>
-    </div>
-  </UDashboardPanel>
+  </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Profile Settings'
 })
 
 const toast = useToast()

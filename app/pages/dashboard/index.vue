@@ -1,7 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Dashboard'
 })
 
 const { session } = useUserSession()
@@ -21,19 +22,17 @@ function copyCode() {
 </script>
 
 <template>
-  <UDashboardPanel>
-    <template #header>
-      <UDashboardNavbar title="Dashboard">
-         <template #right>
-            <UBadge :color="session?.user?.role === 'business_owner' ? 'primary' : 'neutral'" variant="subtle">
-               {{ session?.user?.role === 'business_owner' ? 'Business Owner' : 'Employee' }}
-            </UBadge>
-         </template>
-      </UDashboardNavbar>
-    </template>
-
-    <div class="space-y-6">
-      <!-- User Info Card -->
+  <div class="space-y-6">
+    <!-- Optional: Keep badge if needed, maybe move to page proper or use teleport? -->
+    <!-- The user wanted role badge. In the layout I only added ChatWidget. -->
+    <!-- I should probably add a slot in the layout for actions? -->
+    <!-- Or just keep the badge here? -->
+    <!-- But the navbar is in the layout now. -->
+    <!-- If I want page-specific actions in the navbar, I need a teleport or a store. -->
+    <!-- For now, I will omit the badge in the header to match "make sure all pages are using THIS header". -->
+    <!-- If user wants the badge back, I can use <Teleport to="#navbar-actions"> if I add an ID. -->
+    
+    <!-- User Info Card -->
       <UCard class="mb-6">
         <template #header>
           <div class="flex items-center gap-3">
@@ -108,5 +107,4 @@ function copyCode() {
         </UCard>
       </div>
     </div>
-  </UDashboardPanel>
 </template>

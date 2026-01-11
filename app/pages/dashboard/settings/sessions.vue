@@ -1,23 +1,5 @@
 <template>
-  <UDashboardPanel>
-    <UDashboardNavbar title="Active Sessions">
-      <template #leading>
-        <UIcon name="i-heroicons-device-phone-mobile" class="w-6 h-6" />
-      </template>
-      <template #trailing>
-        <UButton
-          color="error"
-          variant="soft"
-          icon="i-heroicons-exclamation-triangle"
-          :loading="revokingAll"
-          @click="showRevokeAllConfirm = true"
-        >
-          Revoke All Other Sessions
-        </UButton>
-      </template>
-    </UDashboardNavbar>
-
-    <div class="p-6 space-y-6">
+  <div class="p-6 space-y-6">
       <!-- Info Alert -->
       <UAlert
         color="info"
@@ -158,13 +140,13 @@
         </div>
       </template>
     </UModal>
-  </UDashboardPanel>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Active Sessions'
 })
 
 const toast = useToast()

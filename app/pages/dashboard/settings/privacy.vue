@@ -1,12 +1,5 @@
 <template>
-  <UDashboardPanel>
-    <UDashboardNavbar title="Privacy & Data">
-      <template #leading>
-        <UIcon name="i-heroicons-shield-check" class="w-6 h-6" />
-      </template>
-    </UDashboardNavbar>
-
-    <div class="p-6 space-y-8">
+  <div class="p-6 space-y-8">
       <!-- Consent Preferences -->
       <UPageCard 
         title="Consent Preferences" 
@@ -179,13 +172,13 @@
         </div>
       </template>
     </UModal>
-  </UDashboardPanel>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Privacy & Data'
 })
 
 const toast = useToast()

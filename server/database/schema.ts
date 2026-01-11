@@ -41,6 +41,9 @@ export const users = sqliteTable('users', {
     createdAt: integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
     updatedAt: integer({ mode: 'timestamp' }).$defaultFn(() => new Date()),
     lastLoginAt: integer({ mode: 'timestamp' }),
+
+    // E2EE Identity
+    publicKey: text(), // User's public identity key (JWK format)
 })
 
 /**
@@ -208,6 +211,62 @@ export const rolePermissions = sqliteTable('role_permissions', {
 ])
 
 // =============================================================================
+// CHAT & E2EE
+// =============================================================================
+
+/**
+ * Conversations table - Chat threads (Direct or Group)
+ */
+export const conversations = sqliteTable('conversations', {
+    id: integer().primaryKey({ autoIncrement: true }),
+    type: text().notNull(), // 'direct' | 'group'
+    name: text(), // Optional name for group chats
+    createdAt: integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+    updatedAt: integer({ mode: 'timestamp' }).$defaultFn(() => new Date()),
+})
+
+/**
+ * Conversation Participants - Members of a chat
+ */
+export const conversationParticipants = sqliteTable('conversation_participants', {
+    id: integer().primaryKey({ autoIncrement: true }),
+    conversationId: integer().notNull().references(() => conversations.id),
+    userId: integer().notNull().references(() => users.id),
+
+    // E2EE Session Key
+    // The conversation's symmetric key, encrypted with this user's public key.
+    // This allows the user to decrypt the conversation key and then read messages.
+    encryptedKey: text(),
+
+    joinedAt: integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+    lastReadAt: integer({ mode: 'timestamp' }),
+}, (table) => [
+    index('idx_participants_conversation_id').on(table.conversationId),
+    index('idx_participants_user_id').on(table.userId),
+])
+
+/**
+ * Messages - Encrypted message blobs
+ */
+export const messages = sqliteTable('messages', {
+    id: integer().primaryKey({ autoIncrement: true }),
+    conversationId: integer().notNull().references(() => conversations.id),
+    senderId: integer().notNull().references(() => users.id),
+
+    // Content is a JSON blob encrypted with the Conversation Key (AES-GCM)
+    // Structure after decryption: { text: "Hello", attachments: [...] }
+    content: text().notNull(),
+
+    // Initialization Vector (IV) for AES-GCM
+    iv: text().notNull(),
+
+    createdAt: integer({ mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+}, (table) => [
+    index('idx_messages_conversation_id').on(table.conversationId),
+    index('idx_messages_created_at').on(table.createdAt),
+])
+
+// =============================================================================
 // TYPE EXPORTS
 // =============================================================================
 
@@ -237,3 +296,12 @@ export type NewPermission = typeof permissions.$inferInsert
 
 export type RolePermission = typeof rolePermissions.$inferSelect
 export type NewRolePermission = typeof rolePermissions.$inferInsert
+
+export type Conversation = typeof conversations.$inferSelect
+export type NewConversation = typeof conversations.$inferInsert
+
+export type ConversationParticipant = typeof conversationParticipants.$inferSelect
+export type NewConversationParticipant = typeof conversationParticipants.$inferInsert
+
+export type Message = typeof messages.$inferSelect
+export type NewMessage = typeof messages.$inferInsert

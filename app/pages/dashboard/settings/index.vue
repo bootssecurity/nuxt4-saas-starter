@@ -1,13 +1,6 @@
 <template>
-  <UDashboardPanel>
-    <UDashboardNavbar title="Settings">
-      <template #leading>
-        <UIcon name="i-heroicons-cog-6-tooth" class="w-6 h-6" />
-      </template>
-    </UDashboardNavbar>
-
-    <div class="p-6">
-      <!-- Settings Navigation Grid -->
+  <div class="p-6">
+    <!-- Settings Navigation Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Profile Settings -->
         <NuxtLink to="/dashboard/settings/profile">
@@ -153,13 +146,13 @@
         </div>
       </div>
     </div>
-  </UDashboardPanel>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  title: 'Settings'
 })
 
 const { session } = useUserSession()
