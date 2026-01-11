@@ -1,0 +1,37 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "nuxt-app",
+    "compatibility_date": "2025-01-01",
+    // D1 database binding
+    // Create your D1 database in Cloudflare Dashboard: Workers & Pages → D1 → Create database
+    // Then replace <your-d1-database-id> with the actual database ID
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "nuxt-app-db",
+            "database_id": "<your-d1-database-id>"
+        }
+    ],
+    // R2 bucket binding
+    // Create your R2 bucket in Cloudflare Dashboard: R2 → Create bucket
+    // Then replace <your-r2-bucket-name> with the actual bucket name
+    "r2_buckets": [
+        {
+            "binding": "BLOB",
+            "bucket_name": "<your-r2-bucket-name>"
+        }
+    ],
+    // KV namespace bindings
+    // Create your KV namespaces in Cloudflare Dashboard: Workers & Pages → KV → Create namespace
+    // You need two namespaces: one for KV storage and one for caching
+    "kv_namespaces": [
+        {
+            "binding": "KV",
+            "id": "<your-kv-namespace-id>"
+        },
+        {
+            "binding": "CACHE",
+            "id": "<your-cache-namespace-id>"
+        }
+    ]
+}
