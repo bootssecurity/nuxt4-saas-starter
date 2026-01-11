@@ -48,14 +48,14 @@ Once `wrangler.jsonc` has your IDs:
     npx wrangler pages secret put NUXT_PUBLIC_APP_URL --project-name nuxt-saas-starter
 
     # ZeptoMail API Key
-    npx wrangler pages secret put ZEPTOMAIL_API_KEY --project-name nuxt-saas-starter
+    npx wrangler pages secret put NUXT_ZEPTOMAIL_API_KEY --project-name nuxt-saas-starter
 
     # Session Password (min 32 chars)
     npx wrangler pages secret put NUXT_SESSION_PASSWORD --project-name nuxt-saas-starter
     
     # Email Settings
-    npx wrangler pages secret put MAIL_FROM_ADDRESS --project-name nuxt-saas-starter
-    npx wrangler pages secret put MAIL_FROM_NAME --project-name nuxt-saas-starter
+    npx wrangler pages secret put NUXT_PUBLIC_MAIL_FROM_ADDRESS --project-name nuxt-saas-starter
+    npx wrangler pages secret put NUXT_PUBLIC_MAIL_FROM_NAME --project-name nuxt-saas-starter
     ```
 
 ---
