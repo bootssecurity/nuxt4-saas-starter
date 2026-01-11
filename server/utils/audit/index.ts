@@ -5,7 +5,7 @@
 
 import type { H3Event } from 'h3'
 import { db } from 'hub:db'
-import { auditLogs, type NewAuditLog } from '~~/server/database/schema'
+import { auditLogs, type NewAuditLog } from '~~/server/db/schema'
 import { getClientInfo, type ClientInfo } from './clientInfo'
 import {
     type AuditEventType,

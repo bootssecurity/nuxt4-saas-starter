@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { eq, and, desc, lt } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { messages, conversationParticipants } from '~~/server/database/schema'
+import { messages, conversationParticipants } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
     const { user } = await requireUserSession(event)

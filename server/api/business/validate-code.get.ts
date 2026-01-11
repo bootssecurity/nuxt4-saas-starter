@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { businesses } from '~~/server/database/schema'
+import { businesses } from '~~/server/db/schema'
 
 /**
  * GET /api/business/validate-code

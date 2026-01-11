@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { users, businesses } from '~~/server/database/schema'
+import { users, businesses } from '~~/server/db/schema'
 
 /**
  * GET /api/auth/me

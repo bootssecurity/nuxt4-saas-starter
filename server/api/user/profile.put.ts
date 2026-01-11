@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { users } from '~~/server/database/schema'
+import { users } from '~~/server/db/schema'
 import { sanitizeName, sanitizePhone, isValidPhone } from '~~/server/utils/security/sanitize'
 import { logSuccess, AuditEventTypes, AuditActions, ResourceTypes } from '~~/server/utils/audit'
 

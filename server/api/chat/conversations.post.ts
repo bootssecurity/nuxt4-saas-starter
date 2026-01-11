@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { db } from 'hub:db'
-import { conversations, conversationParticipants } from '~~/server/database/schema'
+import { conversations, conversationParticipants } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
     const { user } = await requireUserSession(event)

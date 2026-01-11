@@ -1,6 +1,6 @@
 import { eq, desc, and, gte, lte, like } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { auditLogs } from '~~/server/database/schema'
+import { auditLogs } from '~~/server/db/schema'
 import {
     logSuccess,
     AuditEventTypes,

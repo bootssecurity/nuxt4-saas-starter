@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { inArray, eq } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { users } from '~~/server/database/schema'
+import { users } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
     await requireUserSession(event)

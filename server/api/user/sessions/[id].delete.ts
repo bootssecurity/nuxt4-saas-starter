@@ -1,6 +1,6 @@
 import { eq, and, isNull } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { userSessions } from '~~/server/database/schema'
+import { userSessions } from '~~/server/db/schema'
 import { revokeSession } from '~~/server/utils/session'
 
 /**

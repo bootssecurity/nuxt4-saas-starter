@@ -1,6 +1,6 @@
 import { eq, desc, inArray, and, ne, gt, sql, isNull, or, count } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { conversations, conversationParticipants, users, messages } from '~~/server/database/schema'
+import { conversations, conversationParticipants, users, messages } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
     const { user } = await requireUserSession(event)

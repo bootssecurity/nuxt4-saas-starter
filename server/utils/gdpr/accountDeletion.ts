@@ -11,7 +11,7 @@ import {
     userSessions,
     magicTokens,
     auditLogs
-} from '~~/server/database/schema'
+} from '~~/server/db/schema'
 import {
     logSuccess,
     AuditEventTypes,

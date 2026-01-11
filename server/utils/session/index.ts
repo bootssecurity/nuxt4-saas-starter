@@ -6,7 +6,7 @@
 import type { H3Event } from 'h3'
 import { eq, and, gt, lt, isNull } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { userSessions, type NewUserSession } from '~~/server/database/schema'
+import { userSessions, type NewUserSession } from '~~/server/db/schema'
 import { randomUUID } from 'uncrypto'
 import { getClientInfo, parseUserAgent } from '../audit/clientInfo'
 import {

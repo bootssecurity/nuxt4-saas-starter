@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { businesses, users, magicTokens } from '~~/server/database/schema'
+import { businesses, users, magicTokens } from '~~/server/db/schema'
 import {
     logSuccess,
     logFailure,

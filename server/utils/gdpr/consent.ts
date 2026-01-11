@@ -6,7 +6,7 @@
 import type { H3Event } from 'h3'
 import { eq } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { users, consentLogs, type NewConsentLog } from '~~/server/database/schema'
+import { users, consentLogs, type NewConsentLog } from '~~/server/db/schema'
 import { getClientInfo } from '../audit/clientInfo'
 import {
     logSuccess,

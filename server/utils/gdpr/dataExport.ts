@@ -14,7 +14,7 @@ import {
     auditLogs,
     dataExportRequests,
     type NewDataExportRequest
-} from '~~/server/database/schema'
+} from '~~/server/db/schema'
 import {
     logSuccess,
     AuditEventTypes,

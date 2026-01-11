@@ -1,6 +1,6 @@
 import { eq, and } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { users, magicTokens } from '~~/server/database/schema'
+import { users, magicTokens } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
     const session = await requireUserSession(event)

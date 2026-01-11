@@ -1,6 +1,6 @@
 import { eq, like, and, ne, or } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { users } from '~~/server/database/schema'
+import { users } from '~~/server/db/schema'
 
 export default defineEventHandler(async (event) => {
     const { user } = await requireUserSession(event)

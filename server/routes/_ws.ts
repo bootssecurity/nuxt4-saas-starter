@@ -1,6 +1,6 @@
 import { defineWebSocketHandler } from 'h3'
 import { db } from 'hub:db'
-import { messages, conversationParticipants } from '~~/server/database/schema'
+import { messages, conversationParticipants } from '~~/server/db/schema'
 import { eq, and } from 'drizzle-orm'
 
 const peers = new Map<any, { userId: number | null, channels: Set<string> }>()

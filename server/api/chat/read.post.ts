@@ -1,5 +1,5 @@
 import { db } from 'hub:db'
-import { conversationParticipants } from '~~/server/database/schema'
+import { conversationParticipants } from '~~/server/db/schema'
 import { eq, and } from 'drizzle-orm'
 import { z } from 'zod'
 
