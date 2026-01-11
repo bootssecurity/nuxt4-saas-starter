@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   // Runtime configuration
   runtimeConfig: {
     // Server-only (private)
-    zeptomailApiKey: process.env.ZEPTOMAIL_API_KEY,
+    zeptomailApiKey: process.env.ZEPTOMAIL_API_KEY || '',
 
     // Public (available on client)
     public: {
