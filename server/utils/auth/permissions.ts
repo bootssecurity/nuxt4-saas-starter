@@ -6,7 +6,7 @@
 import type { H3Event } from 'h3'
 import { eq, and } from 'drizzle-orm'
 import { db } from 'hub:db'
-import { permissions, rolePermissions } from '~~/server/database/schema'
+import { permissions, rolePermissions } from '~~/server/db/schema'
 
 /**
  * Default role permissions mapping
