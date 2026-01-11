@@ -1,6 +1,6 @@
 {
     "name": "create-nuxt4-saas-starter",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Scaffold a modern Nuxt 4 SaaS Starter",
     "bin": {
         "create-nuxt-saas-starter": "index.mjs"
