@@ -111,6 +111,17 @@ npm run dev
 
 Visit `http://localhost:3000` to see your app running.
 
+### 🔍 Production Preview
+
+To test the production build locally (simulating Cloudflare Pages environment):
+
+```bash
+bun run build
+npx wrangler pages dev dist
+```
+
+This ensures your app works exactly as it will on Cloudflare (including `_worker.js` and bindings).
+
 ## 🗄 Database
 
 This project uses **Drizzle ORM** with **SQLite**.
@@ -129,23 +140,20 @@ This project uses **Drizzle ORM** with **SQLite**.
 
 ## 📦 Deployment
 
-This project is optimized for deployment on **Cloudflare Pages** via **NuxtHub**.
+This project is configured for **automated deployment** to [Cloudflare Pages](https://pages.cloudflare.com/) using GitHub Actions.
 
-1.  **Build the project:**
+👉 **[Read the Full Deployment Guide](./docs/deployment.md)** for step-by-step setup instructions.
 
-    ```bash
-    bun run build
-    ```
+### Quick Summary
+- **Infrastructure**: Cloudflare Pages + Workers (D1, KV, R2).
+- **Automation**: Pushing to the `main` branch automatically builds and deploys.
+- **Secrets**: Managed securely via Cloudflare Dashboard (not in git).
 
-2.  **Deploy:**
-
-    You can deploy using Wrangler:
-
-    ```bash
-    bun run deploy
-    ```
-
-    *Ensure you are logged in to Cloudflare (`npx wrangler login`) and have linked your project.*
+### Manual Deployment
+You can also deploy manually if needed:
+```bash
+bun run deploy
+```
 
 ## 🧪 Testing
 

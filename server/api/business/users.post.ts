@@ -114,11 +114,9 @@ export default defineEventHandler(async (event) => {
         expiresAt
     })
 
-    // 5. Send Email
-    // Fetch business name
+    // Build magic link URL using getPublicUrl utility
     const businessName = session.user.businessName || 'Your Company'
-    const config = useRuntimeConfig()
-    const appUrl = config.public.appUrl || 'http://localhost:3000'
+    const appUrl = getPublicUrl(event)
     const magicLink = `${appUrl}/auth/verify?token=${token}`
 
     try {

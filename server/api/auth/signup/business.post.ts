@@ -117,9 +117,8 @@ export default defineEventHandler(async (event) => {
         }
     })
 
-    // Build magic link URL
-    const config = useRuntimeConfig()
-    const appUrl = config.public.appUrl || 'http://localhost:3000'
+    // Build magic link URL using getPublicUrl utility
+    const appUrl = getPublicUrl(event)
     const magicLink = `${appUrl}/auth/verify?token=${token}`
 
     // Send magic link email

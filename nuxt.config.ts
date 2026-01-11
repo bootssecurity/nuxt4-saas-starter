@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 
     // Public (available on client)
     public: {
-      appUrl: process.env.APP_URL || 'http://localhost:3000',
+      appUrl: '',
       mailFromAddress: process.env.MAIL_FROM_ADDRESS || 'contact@example.com',
       mailFromName: process.env.MAIL_FROM_NAME || 'Nuxt SaaS Starter',
     }
