@@ -27,7 +27,12 @@
             icon="i-heroicons-exclamation-circle" 
             :title="error" 
           />
+          
+          <div class="mt-4 flex justify-center">
+            <NuxtTurnstile v-model="token" />
+          </div>
         </template>
+
         <template #footer>
           <div class="space-y-4">
             <div class="space-y-2">
@@ -86,6 +91,7 @@ const loading = ref(false)
 const error = ref('')
 const isRateLimited = ref(false)
 const retrySeconds = ref(0)
+const token = ref('')
 
 // Countdown timer for rate limiting
 let countdownInterval: ReturnType<typeof setInterval> | null = null
@@ -160,11 +166,16 @@ type Schema = z.output<typeof schema>
 const submitButton = computed(() => ({
   label: loading.value ? 'Creating Account...' : isRateLimited.value ? `Wait ${retrySeconds.value}s` : 'Create Business Account',
   icon: isRateLimited.value ? 'i-heroicons-clock' : 'i-heroicons-arrow-right',
-  loading: loading.value
+  loading: loading.value,
+  disabled: !token.value
 }))
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   if (isRateLimited.value) return
+  if (!token.value) {
+    error.value = 'Please complete the security check'
+    return
+  }
   
   error.value = ''
   loading.value = true
@@ -177,7 +188,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
         firstName: payload.data.firstName,
         lastName: payload.data.lastName,
         email: payload.data.email,
-        phone: payload.data.phone
+        phone: payload.data.phone,
+        token: token.value
       }
     })
 
@@ -190,6 +202,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     } else {
       error.value = err.data?.message || err.data?.statusMessage || 'Failed to create account. Please try again.'
     }
+    // Reset token on error
+    token.value = ''
   } finally {
     loading.value = false
   }

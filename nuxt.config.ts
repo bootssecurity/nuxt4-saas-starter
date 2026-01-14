@@ -15,8 +15,14 @@ export default defineNuxtConfig({
     '@nuxt/a11y',
     'nuxt-auth-utils',
     'nuxt-security',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt4-turnstile'
   ],
+
+  turnstile: {
+    // Cloudflare Turnstile Site Key
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+  },
 
   css: ['~/assets/css/main.css'],
 
@@ -29,6 +35,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Server-only (private)
     zeptomailApiKey: process.env.ZEPTOMAIL_API_KEY || '',
+    turnstile: {
+      // Cloudflare Turnstile Secret Key
+      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
+    },
 
     // Public (available on client)
     public: {

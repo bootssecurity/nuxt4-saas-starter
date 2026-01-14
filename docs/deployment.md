@@ -56,6 +56,10 @@ Once `wrangler.jsonc` has your IDs:
     # Email Settings
     npx wrangler pages secret put NUXT_PUBLIC_MAIL_FROM_ADDRESS --project-name nuxt-saas-starter
     npx wrangler pages secret put NUXT_PUBLIC_MAIL_FROM_NAME --project-name nuxt-saas-starter
+
+    # Cloudflare Turnstile
+    npx wrangler pages secret put NUXT_PUBLIC_TURNSTILE_SITE_KEY --project-name nuxt-saas-starter
+    npx wrangler pages secret put NUXT_TURNSTILE_SECRET_KEY --project-name nuxt-saas-starter
     ```
 
 ---
@@ -92,6 +96,8 @@ To ensure the automated deployment works correctly, add the following secrets to
 3.  `MAIL_FROM_ADDRESS`
 4.  `MAIL_FROM_NAME`
 5.  `NUXT_PUBLIC_APP_URL` (Your project's production URL)
+6.  `NUXT_PUBLIC_TURNSTILE_SITE_KEY`
+7.  `NUXT_TURNSTILE_SECRET_KEY`
 
 ---
 

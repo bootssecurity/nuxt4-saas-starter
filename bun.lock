@@ -23,6 +23,7 @@
         "nuxt": "^4.2.2",
         "nuxt-auth-utils": "0.5.26",
         "nuxt-security": "2.5.0",
+        "nuxt4-turnstile": "^1.0.3",
         "typescript": "^5.6.3",
         "vue": "^3.5.26",
         "vue-router": "^4.6.4",
@@ -2034,6 +2035,8 @@
     "nuxt-csurf": ["nuxt-csurf@1.6.5", "", { "dependencies": { "@nuxt/kit": "^3.13.2", "defu": "^6.1.4", "uncsrf": "^1.2.0" } }, "sha512-/DMNTON8LIVhntamKbBmAuM879B0QnuSJa7ZAkmkZe+21m+1QGcjVUxtSkizaM48NUvkuAGYOG0ncn+kqEgrzw=="],
 
     "nuxt-security": ["nuxt-security@2.5.0", "", { "dependencies": { "@nuxt/kit": "^4.2.1", "basic-auth": "^2.0.1", "defu": "^6.1.4", "nuxt-csurf": "^1.6.5", "pathe": "^2.0.3", "unplugin-remove": "^1.0.3", "xss": "^1.0.15" } }, "sha512-mfoSXcY1V6DHJwXGVLY99G7W2XnkdGnJ5FgmGe8I2ZkWOb1DVr3rbwl8OgIb1C64CDWTBhwer8eXxgCLCGGLUg=="],
+
+    "nuxt4-turnstile": ["nuxt4-turnstile@1.0.3", "", { "dependencies": { "@nuxt/kit": "^4.2.2", "defu": "^6.1.4" } }, "sha512-wcHRPMb1N6U9ppefsVTsRMaE2OCj34JMnMcxYmti6qON1q1qzqqU5KJC7T0yZTF47Tnv0FzMet4E9YWfHB2fPg=="],
 
     "nypm": ["nypm@0.6.2", "", { "dependencies": { "citty": "^0.1.6", "consola": "^3.4.2", "pathe": "^2.0.3", "pkg-types": "^2.3.0", "tinyexec": "^1.0.1" }, "bin": { "nypm": "dist/cli.mjs" } }, "sha512-7eM+hpOtrKrBDCh7Ypu2lJ9Z7PNZBdi/8AT3AX8xoCj43BBVHD0hPSTEvMtkMpfs8FCqBGhxB+uToIQimA111g=="],
 

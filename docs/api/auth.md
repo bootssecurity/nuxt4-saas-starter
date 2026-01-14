@@ -20,9 +20,10 @@ Initiates a passwordless login flow by sending a magic link to the user's email.
 - **Rate Limit**: 5 requests / 60s per IP
 - **Min Response Time**: 500ms (timing attack prevention)
 - **Body**: 
-  ```json
-  { "email": "user@example.com" }
-  ```
+  { 
+    "email": "user@example.com",
+    "token": "turnstile_token_here" 
+  }
 - **Response**: 
   ```json
   { "success": true, "message": "If this email exists, a magic link has been sent" }
@@ -87,7 +88,11 @@ Registers a new business account. Sends a magic link to complete registration.
     "firstName": "John",
     "lastName": "Doe",
     "businessName": "Acme Corp",
-    "phone": "+1234567890"  // optional
+    "firstName": "John",
+    "lastName": "Doe",
+    "businessName": "Acme Corp",
+    "phone": "+1234567890", // optional
+    "token": "turnstile_token_here"
   }
   ```
 - **Response**: `{ "success": true, "message": "Please check your email to complete registration" }`
@@ -104,7 +109,9 @@ Registers a new employee account using a business code.
     "firstName": "Jane",
     "lastName": "Smith",
     "companyCode": "ABC123",
-    "phone": "+1234567890"  // optional
+    "companyCode": "ABC123",
+    "phone": "+1234567890", // optional
+    "token": "turnstile_token_here"
   }
   ```
 - **Response**: `{ "success": true, "message": "Please check your email to complete registration" }`

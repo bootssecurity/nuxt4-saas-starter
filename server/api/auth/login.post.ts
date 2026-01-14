@@ -38,7 +38,19 @@ export default defineEventHandler(async (event) => {
     await rateLimit(event, RATE_LIMITS.login)
 
     const body = await readBody(event)
-    const { email } = body
+    const { email, token: turnstileToken } = body
+
+    // Verify Turnstile Token
+    const turnstile = await verifyTurnstileToken(turnstileToken)
+    if (!turnstile.success) {
+        await logFailure(event, AuditEventTypes.AUTH_LOGIN_ATTEMPT, AuditActions.LOGIN,
+            'Invalid captcha token', { metadata: { email } })
+
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Invalid captcha'
+        })
+    }
 
     if (!email) {
         await logFailure(event, AuditEventTypes.AUTH_LOGIN_ATTEMPT, AuditActions.LOGIN,

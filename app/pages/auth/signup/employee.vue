@@ -89,7 +89,12 @@
               icon="i-heroicons-exclamation-circle" 
               :title="error" 
             />
+            
+            <div class="mt-4 flex justify-center">
+              <NuxtTurnstile v-model="token" />
+            </div>
           </template>
+
           <template #footer>
             <div class="space-y-4">
               <UButton variant="ghost" color="neutral" @click="resetCode" class="text-sm">
@@ -142,6 +147,7 @@ const codeError = ref('')
 const codeValid = ref(false)
 const companyName = ref('')
 const validatedCode = ref('')
+const token = ref('')
 
 // Rate limiting state for code validation
 const isCodeRateLimited = ref(false)
@@ -255,7 +261,8 @@ const codeSubmitButton = computed(() => ({
 const detailsSubmitButton = computed(() => ({
   label: loading.value ? 'Joining Company...' : isRateLimited.value ? `Wait ${retrySeconds.value}s` : 'Join Company',
   icon: isRateLimited.value ? 'i-heroicons-clock' : 'i-heroicons-arrow-right',
-  loading: loading.value
+  loading: loading.value,
+  disabled: !token.value
 }))
 
 async function validateCode(payload: FormSubmitEvent<CodeSchema>) {
@@ -287,10 +294,15 @@ function resetCode() {
   companyName.value = ''
   validatedCode.value = ''
   error.value = ''
+  token.value = ''
 }
 
 async function onSubmit(payload: FormSubmitEvent<DetailsSchema>) {
   if (isRateLimited.value) return
+  if (!token.value) {
+    error.value = 'Please complete the security check'
+    return
+  }
   
   error.value = ''
   loading.value = true
@@ -303,7 +315,8 @@ async function onSubmit(payload: FormSubmitEvent<DetailsSchema>) {
         firstName: payload.data.firstName,
         lastName: payload.data.lastName,
         email: payload.data.email,
-        phone: payload.data.phone
+        phone: payload.data.phone,
+        token: token.value
       }
     })
 
@@ -316,6 +329,8 @@ async function onSubmit(payload: FormSubmitEvent<DetailsSchema>) {
     } else {
       error.value = err.data?.message || err.data?.statusMessage || 'Failed to sign up. Please try again.'
     }
+    // Reset token on error
+    token.value = ''
   } finally {
     loading.value = false
   }

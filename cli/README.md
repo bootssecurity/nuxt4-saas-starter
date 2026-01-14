@@ -49,6 +49,7 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 - **Role-Based Access**: Granular access control with admin, business_owner, and employee roles.
 - **Session Management**: Secure session handling with device tracking and revocation.
 - **Security Headers**: HSTS, CSP, X-Frame-Options, and other headers enabled by default.
+- **Bot Protection**: Cloudflare Turnstile integration on all authentication forms.
 
 ### 📁 File Management
 - **Secure Upload**: File type whitelist (images, PDF, CSV, JSON), 10MB size limit, business-scoped storage.
@@ -126,7 +127,15 @@ npx create-nuxt4-saas-starter my-saas-app
     cp .env.example .env
     ```
 
-    Update the `.env` file with your specific configuration (e.g., `ZEPTOMAIL_API_KEY`, `NUXT_SESSION_PASSWORD`).
+    Update the `.env` file with your specific configuration:
+
+    ```bash
+    # Cloudflare Turnstile (Get keys from Cloudflare Dashboard)
+    NUXT_PUBLIC_TURNSTILE_SITE_KEY=your-site-key
+    NUXT_TURNSTILE_SECRET_KEY=your-secret-key
+    ```
+
+    Update other credentials (e.g., `ZEPTOMAIL_API_KEY`, `NUXT_SESSION_PASSWORD`).
 
 ### Development
 

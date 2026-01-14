@@ -26,7 +26,19 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
     // Validate required fields
-    const { email, firstName, lastName, phone, companyCode } = body
+    const { email, firstName, lastName, phone, companyCode, token: turnstileToken } = body
+
+    // Verify Turnstile Token
+    const turnstile = await verifyTurnstileToken(turnstileToken)
+    if (!turnstile.success) {
+        await logFailure(event, AuditEventTypes.AUTH_SIGNUP_ATTEMPT, AuditActions.ATTEMPT,
+            'Invalid captcha token', { metadata: { email, signupType: 'employee' } })
+
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Invalid captcha'
+        })
+    }
 
     if (!email || !firstName || !lastName || !companyCode) {
         await logFailure(event, AuditEventTypes.AUTH_SIGNUP_ATTEMPT, AuditActions.ATTEMPT,
