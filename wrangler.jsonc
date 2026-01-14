@@ -28,8 +28,5 @@
             "binding": "CACHE",
             "id": "f89f03c5b2a74d2d9d585aa7fcadd86c"
         }
-    ],
-    "vars": {
-        "NUXT_PUBLIC_TURNSTILE_SITE_KEY": "1x00000000000000000000AA"
-    }
+    ]
 }
