@@ -72,7 +72,7 @@ export default defineEventHandler(async (event) => {
 
     if (actorEmail) {
         // Escape SQL wildcards to prevent pattern injection
-        const escapedEmail = actorEmail.replace(/[%_]/g, '\\$&')
+        const escapedEmail = actorEmail.replace(/[\\%_]/g, '\\$&')
         conditions.push(like(auditLogs.actorEmail, `%${escapedEmail}%`))
     }
 
