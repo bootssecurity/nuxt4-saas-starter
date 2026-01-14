@@ -18,6 +18,10 @@ export const AuditEventTypes = {
     AUTH_TOKEN_EXPIRED: 'auth.token.expired',
     AUTH_TOKEN_INVALID: 'auth.token.invalid',
 
+    // Authorization Events
+    AUTH_UNAUTHORIZED: 'auth.unauthorized',
+    AUTH_FORBIDDEN: 'auth.forbidden',
+
     // Rate Limiting
     RATE_LIMIT_EXCEEDED: 'security.rate_limit.exceeded',
 
@@ -49,6 +53,12 @@ export const AuditEventTypes = {
     ADMIN_USER_VIEW: 'admin.user.view',
     ADMIN_USER_UPDATE: 'admin.user.update',
     ADMIN_AUDIT_VIEW: 'admin.audit.view',
+
+    // File Events
+    FILE_UPLOAD: 'file.upload',
+    FILE_DOWNLOAD: 'file.download',
+    FILE_DELETE: 'file.delete',
+    FILE_LIST: 'file.list',
 } as const
 
 export type AuditEventType = typeof AuditEventTypes[keyof typeof AuditEventTypes]
@@ -94,6 +104,7 @@ export const ResourceTypes = {
     TOKEN: 'token',
     CONSENT: 'consent',
     EXPORT: 'export',
+    FILE: 'file',
 } as const
 
 export type ResourceType = typeof ResourceTypes[keyof typeof ResourceTypes]

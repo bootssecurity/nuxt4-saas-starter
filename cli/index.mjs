@@ -9,7 +9,7 @@ import fs from 'node:fs';
 
 async function main() {
     console.clear();
-    consola.info('🚀 Welcome to the Nuxt 4 SaaS Starter Scaffolding Tool!\n');
+    consola.info('🚀 Welcome to the Nuxt 4 SaaS Starter CLI!\n');
 
     // 1. Ask for project name
     const response = await prompts({
@@ -27,8 +27,7 @@ async function main() {
     const targetDir = path.resolve(process.cwd(), response.projectName);
     const projectName = path.basename(targetDir);
 
-    // 2. Download Template
-    // TODO: REPLACE "gh:lakhwindersingh/nuxt-starter" WITH YOUR ACTUAL REPO URL
+
     const templateSource = 'gh:bootssecurity/nuxt4-saas-starter';
 
     try {

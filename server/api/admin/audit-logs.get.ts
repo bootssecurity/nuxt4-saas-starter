@@ -71,7 +71,9 @@ export default defineEventHandler(async (event) => {
     }
 
     if (actorEmail) {
-        conditions.push(like(auditLogs.actorEmail, `%${actorEmail}%`))
+        // Escape SQL wildcards to prevent pattern injection
+        const escapedEmail = actorEmail.replace(/[%_]/g, '\\$&')
+        conditions.push(like(auditLogs.actorEmail, `%${escapedEmail}%`))
     }
 
     if (startDate) {

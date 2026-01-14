@@ -20,8 +20,8 @@ npx create-nuxt4-saas-starter my-saas-app
 <br>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/bootssecurity/nuxt4-saas-starter/main/nuxt-app/public/screenshots/landing.png" width="45%" alt="Nuxt SaaS Starter Landing">
-  <img src="https://raw.githubusercontent.com/bootssecurity/nuxt4-saas-starter/main/nuxt-app/public/screenshots/login.png" width="45%" alt="Nuxt SaaS Starter Login">
+  <img src="https://raw.githubusercontent.com/bootssecurity/nuxt4-saas-starter/refs/heads/main/public/screenshots/landing.png" width="45%" alt="Nuxt SaaS Starter Landing">
+  <img src="https://raw.githubusercontent.com/bootssecurity/nuxt4-saas-starter/refs/heads/main/public/screenshots/login.png" width="45%" alt="Nuxt SaaS Starter Login">
 </p>
 
 A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub**, and **Nuxt UI v4**. Designed for speed, scalability, and ease of deployment to Cloudflare.
@@ -41,11 +41,19 @@ A structured, production-ready SaaS boilerplate built with **Nuxt 4**, **NuxtHub
 ## ⚡ Detailed Features
 
 ### 🔐 Authentication & Security
-- **Magic Link Auth**: Passwordless login via email magic links.
-- **Rate Limiting**: Built-in rate limiting for sensitive endpoints (Login, Signup, Data Export).
-- **Audit Logging**: Comprehensive audit trails for security-critical actions (Signups, Profile Updates).
-- **Role-Based Access**: Dedicated signup flows for **Business** and **Employee** roles.
+- **Magic Link Auth**: Passwordless login via email magic links with 15-minute expiry.
+- **Global API Authorization**: All API routes are protected by default - explicit whitelist for public routes.
+- **Rate Limiting**: Built-in rate limiting for sensitive endpoints (Login: 5/min, Signup: 3/min, Upload: 20/min).
+- **Timing Attack Prevention**: Constant-time responses to prevent user enumeration attacks.
+- **Audit Logging**: Comprehensive audit trails for all security-critical actions.
+- **Role-Based Access**: Granular access control with admin, business_owner, and employee roles.
 - **Session Management**: Secure session handling with device tracking and revocation.
+- **Security Headers**: HSTS, CSP, X-Frame-Options, and other headers enabled by default.
+
+### 📁 File Management
+- **Secure Upload**: File type whitelist (images, PDF, CSV, JSON), 10MB size limit, business-scoped storage.
+- **Access Control**: Files are automatically scoped to user's business - no cross-tenant access.
+- **Audit Trail**: All file operations (upload, list, download) are logged.
 
 ### 💬 Real-time Messaging
 - **End-to-End Encryption**: All messages are encrypted client-side using RSA-OAEP key exchange and AES-GCM encryption.
@@ -202,7 +210,9 @@ bun run test:coverage
 
 ## 📚 Documentation
 
-For detailed API documentation, please check the [Wiki / API Docs](https://github.com/bootssecurity/nuxt4-saas-starter/tree/main/nuxt-app/docs/api).
+- **[Security Guide](https://github.com/bootssecurity/nuxt4-saas-starter/blob/main/nuxt-app/docs/SECURITY.md)**: Comprehensive security architecture and best practices.
+- **[API Documentation](https://github.com/bootssecurity/nuxt4-saas-starter/tree/main/nuxt-app/docs/api)**: Detailed endpoint documentation with examples.
+- **[Deployment Guide](https://github.com/bootssecurity/nuxt4-saas-starter/blob/main/nuxt-app/docs/deployment.md)**: Step-by-step deployment instructions.
 
 ## 📄 License
 

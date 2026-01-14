@@ -16,9 +16,24 @@ import {
  * Security:
  * - Rate limited: 5 requests per 60 seconds
  * - Does not reveal if email exists (returns same message regardless)
+ * - Constant-time response to prevent timing attacks
  * - All attempts are audit logged
  */
+
+// Minimum response time in milliseconds to prevent timing attacks
+const MIN_RESPONSE_TIME_MS = 500
+
 export default defineEventHandler(async (event) => {
+    const startTime = Date.now()
+
+    // Helper to ensure minimum response time
+    const ensureMinResponseTime = async () => {
+        const elapsed = Date.now() - startTime
+        if (elapsed < MIN_RESPONSE_TIME_MS) {
+            await new Promise(resolve => setTimeout(resolve, MIN_RESPONSE_TIME_MS - elapsed))
+        }
+    }
+
     // Apply rate limiting
     await rateLimit(event, RATE_LIMITS.login)
 
@@ -29,6 +44,7 @@ export default defineEventHandler(async (event) => {
         await logFailure(event, AuditEventTypes.AUTH_LOGIN_ATTEMPT, AuditActions.LOGIN,
             'Email not provided', { metadata: { email: null } })
 
+        await ensureMinResponseTime()
         throw createError({
             statusCode: 400,
             statusMessage: 'Email is required'
@@ -41,6 +57,7 @@ export default defineEventHandler(async (event) => {
         await logFailure(event, AuditEventTypes.AUTH_LOGIN_ATTEMPT, AuditActions.LOGIN,
             'Invalid email format', { metadata: { email } })
 
+        await ensureMinResponseTime()
         throw createError({
             statusCode: 400,
             statusMessage: 'Invalid email format'
@@ -57,6 +74,9 @@ export default defineEventHandler(async (event) => {
         // Log attempt but don't reveal if user exists
         await logFailure(event, AuditEventTypes.AUTH_LOGIN_ATTEMPT, AuditActions.LOGIN,
             'User not found', { metadata: { email: email.toLowerCase() } })
+
+        // Wait for minimum response time to prevent timing attacks
+        await ensureMinResponseTime()
 
         // Don't reveal if user exists - still show success message
         return {
@@ -117,6 +137,9 @@ export default defineEventHandler(async (event) => {
         businessId: user.businessId ?? undefined,
         metadata: { method: 'magic_link' }
     })
+
+    // Ensure minimum response time even for successful requests
+    await ensureMinResponseTime()
 
     return {
         success: true,

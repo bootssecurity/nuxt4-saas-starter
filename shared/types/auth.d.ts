@@ -7,7 +7,7 @@ declare module '#auth-utils' {
         email: string
         firstName: string
         lastName: string
-        role: 'business_owner' | 'employee'
+        role: 'admin' | 'business_owner' | 'employee'
         businessId: number | null
         businessName?: string
         businessCode?: string
